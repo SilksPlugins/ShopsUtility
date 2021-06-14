@@ -6,4 +6,16 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Images\FaSearchSolid.png" />
+    <None Remove="Images\FaSyncAltSolid.png" />
+    <None Remove="Images\Icon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\FaSearchSolid.png" />
+    <Resource Include="Images\FaSyncAltSolid.png" />
+    <Resource Include="Images\Icon.ico" />
+  </ItemGroup>
+
 </Project>
