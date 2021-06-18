@@ -92,17 +92,21 @@
                         <TextBlock Grid.Column="3" Grid.Row="1" Text="Sell Price:" />
 
                         <mah:NumericUpDown x:Name="ItemIdNumericBox" Grid.Column="1" Grid.Row="0"
-                                           NumericInputMode="Numbers" Value="{Binding Path=ItemId}"/>
+                                           NumericInputMode="Numbers" Value="{Binding Path=ItemId}"
+                                           IsEnabled="{Binding DatabaseControlsEnabled}"/>
                         <mah:NumericUpDown Grid.Column="4" Grid.Row="0"
-                                           NumericInputMode="Numbers" Value="{Binding Path=ItemOrder}"/>
+                                           NumericInputMode="Numbers" Value="{Binding Path=ItemOrder}"
+                                           IsEnabled="{Binding DatabaseControlsEnabled}"/>
                         <mah:NumericUpDown Grid.Column="1" Grid.Row="1"
                                            NumericInputMode="Decimal" DecimalPointCorrection="Currency"
-                                           Value="{Binding Path=ItemBuyPrice}"/>
+                                           Value="{Binding Path=ItemBuyPrice}"
+                                           IsEnabled="{Binding DatabaseControlsEnabled}"/>
                         <mah:NumericUpDown Grid.Column="4" Grid.Row="1"
                                            NumericInputMode="Decimal" DecimalPointCorrection="Currency"
-                                           Value="{Binding Path=ItemSellPrice}"/>
+                                           Value="{Binding Path=ItemSellPrice}"
+                                           IsEnabled="{Binding DatabaseControlsEnabled}"/>
                         <Button Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="2" Content="Add / Update"
-                                Click="OnItemShopAddClick"/>
+                                Click="OnItemShopAddClick" IsEnabled="{Binding DatabaseControlsEnabled}"/>
                     </Grid>
                     <DataGrid Grid.Column="2" Grid.Row="1" Margin="0,5,0,0"
                               AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="True"

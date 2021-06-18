@@ -114,6 +114,21 @@ namespace ShopsUtility
 
         #endregion
 
+        private bool _databaseControlsEnabled;
+
+        public bool DatabaseControlsEnabled
+        {
+            get => _databaseControlsEnabled;
+            set
+            {
+                if (_databaseControlsEnabled != value)
+                {
+                    _databaseControlsEnabled = value;
+                    OnPropertyChanged(nameof(DatabaseControlsEnabled));
+                }
+            }
+        }
+
         public ShopsDbContext DbContext { get; private set; }
 
         private bool _isUsingDatabase;
@@ -187,11 +202,15 @@ namespace ShopsUtility
 
             AsyncHelper.Run(async () =>
             {
+                await DisableControls();
+
                 await RefreshItemAssets();
 
                 //await RefreshVehicleAssets();
 
                 await SetupDatabase(connectionString);
+
+                await EnableControls();
             });
         }
 
@@ -200,6 +219,22 @@ namespace ShopsUtility
         protected virtual void OnPropertyChanged(string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private async Task DisableControls()
+        {
+            await Dispatcher.InvokeAsync(() =>
+            {
+                DatabaseControlsEnabled = false;
+            });
+        }
+
+        private async Task EnableControls()
+        {
+            await Dispatcher.InvokeAsync(() =>
+            {
+                DatabaseControlsEnabled = true;
+            });
         }
 
         private static IEnumerable<AssetInfo> GetAssets(string unparsed)
@@ -325,6 +360,8 @@ namespace ShopsUtility
             {
                 await Dispatcher.InvokeAsync(() =>
                 {
+                    DatabaseControlsEnabled = false;
+
                     ItemShops.Clear();
                     ItemShopsCollectionView.Source = ItemShops.ToList();
 
@@ -372,6 +409,8 @@ namespace ShopsUtility
 
                 await Dispatcher.InvokeAsync(() =>
                 {
+                    DatabaseControlsEnabled = true;
+
                     ItemShopsProgressRing.IsActive = false;
                     ItemShopsProgressRing.Visibility = Visibility.Hidden;
 
