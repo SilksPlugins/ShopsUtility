@@ -22,8 +22,10 @@ namespace ShopsUtility.Tabs
         public override DataGrid AssetDataGrid => Window.VehicleAssetDataGrid;
 
         public override NumericUpDown ShopIdNumericBox => Window.VehicleIdNumericBox;
-
+        
         public override Button ShopAddButton => Window.VehicleShopAddButton;
+
+        public override TextBox ShopFilterTextBox => Window.VehicleShopSearchTextBox;
 
         public override Button DatabaseRefreshButton => Window.VehicleShopDatabaseRefreshButton;
 

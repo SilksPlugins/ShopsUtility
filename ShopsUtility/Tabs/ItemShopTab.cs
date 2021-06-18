@@ -25,6 +25,8 @@ namespace ShopsUtility.Tabs
 
         public override Button ShopAddButton => Window.ItemShopAddButton;
 
+        public override TextBox ShopFilterTextBox => Window.ItemShopSearchTextBox;
+
         public override Button DatabaseRefreshButton => Window.ItemShopDatabaseRefreshButton;
 
         public override ProgressRing DatabaseProgressRing => Window.ItemShopDatabaseProgressRing;

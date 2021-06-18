@@ -13,6 +13,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Net;
+using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -32,10 +33,12 @@ namespace ShopsUtility.Tabs
         public CollectionViewSource AssetsCollectionView { get; }
 
         public string AssetFilter { get; set; } = "";
-
+        
         public ObservableCollection<TShop> Shops { get; }
 
         public CollectionViewSource ShopsCollectionView { get; }
+
+        public string ShopFilter { get; set; } = "";
 
         private bool _isUsingDatabase;
 
@@ -68,9 +71,13 @@ namespace ShopsUtility.Tabs
 
         public abstract Button ShopAddButton { get; }
 
+        public abstract TextBox ShopFilterTextBox { get; }
+
         public abstract Button DatabaseRefreshButton { get; }
 
         public abstract ProgressRing DatabaseProgressRing { get; }
+
+        private readonly PropertyInfo[] _shopProperties = typeof(TShop).GetProperties();
 
         protected ShopTabBase(MainWindow window, string connectionString)
         {
@@ -91,7 +98,7 @@ namespace ShopsUtility.Tabs
 
             ShopsCollectionView = new CollectionViewSource();
 
-            foreach (var property in typeof(TShop).GetProperties())
+            foreach (var property in _shopProperties)
             {
                 ShopsCollectionView.SortDescriptions.Add(
                     new SortDescription(property.Name, ListSortDirection.Ascending));
@@ -99,12 +106,16 @@ namespace ShopsUtility.Tabs
 
             DbContext = new ShopsDbContext(connectionString);
 
-            AssetsCollectionView.Filter += OnAssetFilter;
         }
 
         public void Load()
         {
             AssetFilterTextBox.TextChanged += OnAssetFilterTextChanged;
+            AssetsCollectionView.Filter += OnAssetFilter;
+
+            ShopFilterTextBox.TextChanged += OnShopFilterTextChanged;
+            ShopsCollectionView.Filter += OnShopFilter;
+
             DatabaseRefreshButton.Click += OnDatabaseRefreshClicked;
             ShopAddButton.Click += OnShopAddClicked;
             Shops.CollectionChanged += OnShopsCollectionChanged;
@@ -265,6 +276,48 @@ namespace ShopsUtility.Tabs
                 Debug.WriteLine(ex);
 
                 return false;
+            }
+        }
+
+        #endregion
+
+        #region Shop Filter Events
+
+        private void OnShopFilterTextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (sender is not TextBox textBox)
+            {
+                return;
+            }
+
+            ShopFilter = textBox.Text;
+
+            ShopsCollectionView.View.Refresh();
+        }
+
+        private void OnShopFilter(object sender, FilterEventArgs e)
+        {
+            if (e.Item is not TShop shop)
+            {
+                return;
+            }
+
+            e.Accepted = false;
+
+            foreach (var property in _shopProperties)
+            {
+                var value = property.GetValue(shop);
+
+                if (value == null)
+                {
+                    continue;
+                }
+
+                if (value.ToString()?.Contains(ShopFilter, StringComparison.OrdinalIgnoreCase) ?? false)
+                {
+                    e.Accepted = true;
+                    break;
+                }
             }
         }
 

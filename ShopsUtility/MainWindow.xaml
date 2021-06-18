@@ -76,6 +76,7 @@
                             <RowDefinition/>
                             <RowDefinition/>
                             <RowDefinition/>
+                            <RowDefinition/>
                         </Grid.RowDefinitions>
                         <Grid.Resources>
                             <Style TargetType="TextBlock">
@@ -113,6 +114,10 @@
                                            IsEnabled="{Binding DatabaseControlsEnabled}"/>
                         <Button x:Name="ItemShopAddButton" Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="2" Content="Add / Update"
                                 IsEnabled="{Binding DatabaseControlsEnabled}"/>
+                        <Grid Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="3" Margin="0,4,0,4" Height="28">
+                            <TextBox x:Name="ItemShopSearchTextBox" VerticalContentAlignment="Center" Padding="5,0,27,0"/>
+                            <Image HorizontalAlignment="Right" Source="Images/FaSearchSolid.png" Height="14" Margin="0,0,7,0"/>
+                        </Grid>
                     </Grid>
                     <DataGrid x:Name="ItemShopDataGrid"
                               Grid.Column="2" Grid.Row="1" Margin="0,5,0,0"
@@ -221,6 +226,7 @@
                             <RowDefinition/>
                             <RowDefinition/>
                             <RowDefinition/>
+                            <RowDefinition/>
                         </Grid.RowDefinitions>
                         <Grid.Resources>
                             <Style TargetType="TextBlock">
@@ -252,6 +258,10 @@
                                            IsEnabled="{Binding DatabaseControlsEnabled}"/>
                         <Button x:Name="VehicleShopAddButton" Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="2" Content="Add / Update"
                                 IsEnabled="{Binding DatabaseControlsEnabled}"/>
+                        <Grid Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="3" Margin="0,4,0,4" Height="28">
+                            <TextBox x:Name="VehicleShopSearchTextBox" VerticalContentAlignment="Center" Padding="5,0,27,0"/>
+                            <Image HorizontalAlignment="Right" Source="Images/FaSearchSolid.png" Height="14" Margin="0,0,7,0"/>
+                        </Grid>
                     </Grid>
                     <DataGrid x:Name="VehicleShopDataGrid"
                               Grid.Column="2" Grid.Row="1" Margin="0,5,0,0"
