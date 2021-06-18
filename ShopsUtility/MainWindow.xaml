@@ -94,6 +94,7 @@
 
                         <mah:NumericUpDown x:Name="ItemIdNumericBox"
                                            Grid.Column="1" Grid.Row="0"
+                                           Minimum="0" Maximum="65535"
                                            NumericInputMode="Numbers" Value="{Binding Path=ItemId}"
                                            IsEnabled="{Binding DatabaseControlsEnabled}"/>
                         <mah:NumericUpDown x:Name="ItemOrderNumericBox"
@@ -237,6 +238,7 @@
 
                         <mah:NumericUpDown x:Name="VehicleIdNumericBox"
                                            Grid.Column="1" Grid.Row="0"
+                                           Minimum="0" Maximum="65535"
                                            NumericInputMode="Numbers" Value="{Binding Path=VehicleId}"
                                            IsEnabled="{Binding DatabaseControlsEnabled}"/>
                         <mah:NumericUpDown x:Name="VehicleOrderNumericBox"
