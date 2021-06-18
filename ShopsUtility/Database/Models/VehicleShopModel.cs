@@ -6,10 +6,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace ShopsUtility.Database.Models
 {
     [Serializable]
-    public class VehicleShopModel
+    public class VehicleShopModel : IShopModel
     {
         [Key]
         public ushort VehicleId { get; set; }
+        
+        public ushort GetId() => VehicleId;
 
         [Column(TypeName = "decimal(24,2)")]
         public decimal BuyPrice { get; set; }
