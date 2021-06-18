@@ -13,7 +13,7 @@ namespace ShopsUtility.Tabs
         {
         }
 
-        public override Uri AssetInfoUri => new("https://pastebin.com/raw/Ai8gRFT7");
+        public override Uri AssetInfoUri => new("https://pastebin.com/raw/A62rLnWC");
 
         public override TextBox AssetFilterTextBox => Window.VehicleAssetSearchTextBox;
 

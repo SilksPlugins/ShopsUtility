@@ -1,0 +1,225 @@
+﻿1,Black Offroader
+2,Blue Offroader
+3,Green Offroader
+4,Orange Offroader
+5,Purple Offroader
+6,Red Offroader
+7,White Offroader
+8,Yellow Offroader
+9,Black Hatchback
+10,Blue Hatchback
+11,Green Hatchback
+12,Orange Hatchback
+13,Purple Hatchback
+14,Red Hatchback
+15,White Hatchback
+16,Yellow Hatchback
+17,Black Truck
+18,Blue Truck
+19,Green Truck
+20,Orange Truck
+21,Purple Truck
+22,Red Truck
+23,White Truck
+24,Yellow Truck
+25,Black Sedan
+26,Blue Sedan
+27,Green Sedan
+28,Orange Sedan
+29,Purple Sedan
+30,Red Sedan
+31,White Sedan
+32,Yellow Sedan
+33,Police Car
+34,Firetruck
+35,Black Van
+36,Blue Van
+37,Green Van
+38,Orange Van
+39,Purple Van
+40,Red Van
+41,White Van
+42,Yellow Van
+43,Black Roadster
+44,Blue Roadster
+45,Green Roadster
+46,Orange Roadster
+47,Purple Roadster
+48,Red Roadster
+49,White Roadster
+50,Yellow Roadster
+51,Forest Ural
+52,Forest Armored Offroader
+53,Forest APC
+54,Ambulance
+55,Desert Ural
+56,Desert Armored Offroader
+57,Desert APC
+58,Explorer
+59,Black Snowmobile
+60,Blue Snowmobile
+61,Green Snowmobile
+62,Orange Snowmobile
+63,Purple Snowmobile
+64,Red Snowmobile
+65,White Snowmobile
+66,Yellow Snowmobile
+67,Black Quad
+68,Blue Quad
+69,Green Quad
+70,Orange Quad
+71,Purple Quad
+72,Red Quad
+73,White Quad
+74,Yellow Quad
+75,Golfcart
+76,Taxi
+77,Black Racecar
+78,Blue Racecar
+79,Green Racecar
+80,Orange Racecar
+81,Purple Racecar
+82,Red Racecar
+83,White Racecar
+84,Yellow Racecar
+85,Tractor
+86,Bus
+87,Forest Offroader
+88,Desert Offroader
+89,Makeshift Vehicle
+90,Makeshift Vehicle
+91,Makeshift Vehicle
+92,Sandpiper
+93,Forest Transport Heli
+94,Desert Transport Heli
+95,Skycrane
+96,Otter
+97,Runabout
+98,Black Jetski
+99,Blue Jetski
+100,Green Jetski
+101,Orange Jetski
+102,Purple Jetski
+103,Red Jetski
+104,White Jetski
+105,Yellow Jetski
+106,Police Helicopter
+107,Hummingbird
+108,Police Launch
+109,Rainbow Hatchback
+110,Black Auto
+111,Blue Auto
+112,Green Auto
+113,Orange Auto
+114,Purple Auto
+115,Red Auto
+116,White Auto
+117,Yellow Auto
+118,Toiler
+119,APC
+120,Forest Tank
+121,Desert Tank
+122,Luggage Car
+123,Ghost
+124,Dinghy
+125,Black Rover
+126,Blue Rover
+127,Green Rover
+128,Orange Rover
+129,Purple Rover
+130,Red Rover
+131,White Rover
+132,Yellow Rover
+133,Annushka
+134,Orca
+135,Attack Heli
+136,Ural
+137,Tank
+138,Tractor
+139,Moon Buggy
+140,Fighter Jet
+141,Dumptruck
+142,Prison Truck
+143,Armored Offroader
+144,Transport Heli
+145,Military Offroader
+146,Military Offroader
+147,Ural
+148,APC
+149,Black Rally Car
+150,Blue Rally Car
+151,Green Rally Car
+152,Orange Rally Car
+153,Purple Rally Car
+154,Red Rally Car
+155,White Rally Car
+156,Yellow Rally Car
+157,Eagle
+158,Black Beetle
+159,Blue Beetle
+160,Green Beetle
+161,Orange Beetle
+162,Purple Beetle
+163,Red Beetle
+164,White Beetle
+165,Yellow Beetle
+166,Police Car
+167,Firetruck
+168,Ambulance
+169,Police Helicopter
+170,Military Offroader
+171,Ural
+172,APC
+173,Tank
+174,Attack Heli
+175,Transport Heli
+176,Black Dirtbike
+177,Blue Dirtbike
+178,Green Dirtbike
+179,Orange Dirtbike
+180,Purple Dirtbike
+181,Red Dirtbike
+182,White Dirtbike
+183,Yellow Dirtbike
+184,Orca
+185,Bicycle
+186,Cargo Train
+187,Cargo Train
+188,Police Motorcycle
+189,Blimp
+57000,Bus
+57001,Tank
+57002,Blue Ray
+57003,X-Ray
+57004,Black Ray
+57005,Red Ray
+57006,Yellow Ray
+57007,White Ray
+57008,Black Muscle
+57009,Blue Muscle
+57010,Red Muscle
+57011,White Muscle
+57012,Yellow Muscle
+57013,Stork
+57014,Woogie
+57015,Black Beeb
+57016,Blue Beeb
+57017,Red Beeb
+57018,White Beeb
+57019,Yellow Beeb
+57020,Quad
+57021,Ambulance
+57022,Truck
+57023,Blue Motorbike
+57024,Black Motorbike
+57025,Red Motorbike
+57026,White Motorbike
+57027,Yellow Motorbike
+57028,Police Car
+57029,Firetruck
+57030,Police Truck
+57031,Police Truck
+57032,Police Truck
+57033,Bulldozer
+57034,Cart
+57035,Racing Cart
