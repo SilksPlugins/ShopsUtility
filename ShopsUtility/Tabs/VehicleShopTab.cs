@@ -3,7 +3,9 @@ using ShopsUtility.Assets;
 using ShopsUtility.Database.Models;
 using ShopsUtility.Shops;
 using System;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace ShopsUtility.Tabs
 {
@@ -70,6 +72,17 @@ namespace ShopsUtility.Tabs
             }
         }
 
+        protected override void OnLoad()
+        {
+            Window.VehicleShopDataGrid.CellStyle = new Style(typeof(DataGridCell), Window.VehicleShopDataGrid.CellStyle)
+            {
+                Setters =
+                {
+                    new EventSetter(Control.MouseDoubleClickEvent, new MouseButtonEventHandler(OnShopDoubleClick))
+                }
+            };
+        }
+
         public override VehicleShop CreateShopFromModel(VehicleShopModel shopModel, AssetInfo asset)
         {
             return new()
@@ -86,6 +99,29 @@ namespace ShopsUtility.Tabs
             shopModel.VehicleId = VehicleId;
             shopModel.BuyPrice = VehicleBuyPrice;
             shopModel.Order = VehicleOrder;
+        }
+
+        private void OnShopDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var cell = e.Source as DataGridCell;
+
+            if (cell?.DataContext is not VehicleShop shop)
+            {
+                return;
+            }
+
+            VehicleId = shop.VehicleId;
+            VehicleBuyPrice = shop.BuyPrice;
+            VehicleOrder = shop.Order;
+
+            var focus = cell.Column.Header switch
+            {
+                "Buy Price" => Window.VehicleBuyPriceNumericBox,
+                "Order" => Window.VehicleOrderNumericBox,
+                _ => Window.VehicleBuyPriceNumericBox
+            };
+
+            focus.Focus();
         }
     }
 }

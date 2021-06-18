@@ -57,7 +57,7 @@
                             </DataGrid.Resources>
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Item Name" Width="5*" IsReadOnly="True" Binding="{Binding Path=(assets:AssetInfo.Name)}"/>
-                                <DataGridTextColumn Header="Item Id" Width="2*" IsReadOnly="True" Binding="{Binding Path=(assets:AssetInfo.Id)}"/>
+                                <DataGridTextColumn Header="Item ID" Width="2*" IsReadOnly="True" Binding="{Binding Path=(assets:AssetInfo.Id)}"/>
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>
@@ -96,14 +96,17 @@
                                            Grid.Column="1" Grid.Row="0"
                                            NumericInputMode="Numbers" Value="{Binding Path=ItemId}"
                                            IsEnabled="{Binding DatabaseControlsEnabled}"/>
-                        <mah:NumericUpDown Grid.Column="4" Grid.Row="0"
+                        <mah:NumericUpDown x:Name="ItemOrderNumericBox"
+                                           Grid.Column="4" Grid.Row="0"
                                            NumericInputMode="Numbers" Value="{Binding Path=ItemOrder}"
                                            IsEnabled="{Binding DatabaseControlsEnabled}"/>
-                        <mah:NumericUpDown Grid.Column="1" Grid.Row="1"
+                        <mah:NumericUpDown x:Name="ItemBuyPriceNumericBox"
+                                           Grid.Column="1" Grid.Row="1"
                                            NumericInputMode="Decimal" DecimalPointCorrection="Currency"
                                            Value="{Binding Path=ItemBuyPrice}"
                                            IsEnabled="{Binding DatabaseControlsEnabled}"/>
-                        <mah:NumericUpDown Grid.Column="4" Grid.Row="1"
+                        <mah:NumericUpDown x:Name="ItemSellPriceNumericBox"
+                                           Grid.Column="4" Grid.Row="1"
                                            NumericInputMode="Decimal" DecimalPointCorrection="Currency"
                                            Value="{Binding Path=ItemSellPrice}"
                                            IsEnabled="{Binding DatabaseControlsEnabled}"/>
@@ -139,7 +142,7 @@
                             </Style>
                         </DataGrid.Resources>
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Item Id" Width="Auto" IsReadOnly="True" Binding="{Binding Path=(shops:ItemShop.ItemId)}"/>
+                            <DataGridTextColumn Header="Item ID" Width="Auto" IsReadOnly="True" Binding="{Binding Path=(shops:ItemShop.ItemId)}"/>
                             <DataGridTextColumn Header="Item Name" Width="*" IsReadOnly="True" Binding="{Binding Path=(shops:ItemShop.ItemName)}"/>
                             <DataGridTextColumn Header="Buy Price" Width="Auto" IsReadOnly="True" Binding="{Binding Path=(shops:ItemShop.BuyPrice), StringFormat=0.00}"/>
                             <DataGridTextColumn Header="Sell Price" Width="Auto" IsReadOnly="True" Binding="{Binding Path=(shops:ItemShop.SellPrice), StringFormat=0.00}"/>
@@ -198,7 +201,7 @@
                             </DataGrid.Resources>
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Vehicle Name" Width="5*" IsReadOnly="True" Binding="{Binding Path=(assets:AssetInfo.Name)}"/>
-                                <DataGridTextColumn Header="Vehicle Id" Width="2*" IsReadOnly="True" Binding="{Binding Path=(assets:AssetInfo.Id)}"/>
+                                <DataGridTextColumn Header="Vehicle ID" Width="2*" IsReadOnly="True" Binding="{Binding Path=(assets:AssetInfo.Id)}"/>
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>
@@ -236,10 +239,12 @@
                                            Grid.Column="1" Grid.Row="0"
                                            NumericInputMode="Numbers" Value="{Binding Path=VehicleId}"
                                            IsEnabled="{Binding DatabaseControlsEnabled}"/>
-                        <mah:NumericUpDown Grid.Column="4" Grid.Row="0"
+                        <mah:NumericUpDown x:Name="VehicleOrderNumericBox"
+                                           Grid.Column="4" Grid.Row="0"
                                            NumericInputMode="Numbers" Value="{Binding Path=VehicleOrder}"
                                            IsEnabled="{Binding DatabaseControlsEnabled}"/>
-                        <mah:NumericUpDown Grid.Column="1" Grid.Row="1"
+                        <mah:NumericUpDown x:Name="VehicleBuyPriceNumericBox"
+                                           Grid.Column="1" Grid.Row="1"
                                            NumericInputMode="Decimal" DecimalPointCorrection="Currency"
                                            Value="{Binding Path=VehicleBuyPrice}"
                                            IsEnabled="{Binding DatabaseControlsEnabled}"/>
@@ -275,7 +280,7 @@
                             </Style>
                         </DataGrid.Resources>
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Vehicle Id" Width="Auto" IsReadOnly="True" Binding="{Binding Path=(shops:VehicleShop.VehicleId)}"/>
+                            <DataGridTextColumn Header="Vehicle ID" Width="Auto" IsReadOnly="True" Binding="{Binding Path=(shops:VehicleShop.VehicleId)}"/>
                             <DataGridTextColumn Header="Vehicle Name" Width="*" IsReadOnly="True" Binding="{Binding Path=(shops:VehicleShop.VehicleName)}"/>
                             <DataGridTextColumn Header="Buy Price" Width="Auto" IsReadOnly="True" Binding="{Binding Path=(shops:VehicleShop.BuyPrice), StringFormat=0.00}"/>
                             <DataGridTextColumn Header="Order" Width="Auto" IsReadOnly="True" Binding="{Binding Path=(shops:VehicleShop.Order)}"/>

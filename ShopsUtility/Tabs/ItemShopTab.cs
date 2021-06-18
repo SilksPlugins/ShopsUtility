@@ -3,7 +3,9 @@ using ShopsUtility.Assets;
 using ShopsUtility.Database.Models;
 using ShopsUtility.Shops;
 using System;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace ShopsUtility.Tabs
 {
@@ -84,6 +86,17 @@ namespace ShopsUtility.Tabs
             }
         }
 
+        protected override void OnLoad()
+        {
+            Window.ItemShopDataGrid.CellStyle = new Style(typeof(DataGridCell), Window.ItemShopDataGrid.CellStyle)
+            {
+                Setters =
+                {
+                    new EventSetter(Control.MouseDoubleClickEvent, new MouseButtonEventHandler(OnShopDoubleClick))
+                }
+            };
+        }
+
         public override ItemShop CreateShopFromModel(ItemShopModel shopModel, AssetInfo asset)
         {
             return new()
@@ -102,6 +115,31 @@ namespace ShopsUtility.Tabs
             shopModel.BuyPrice = ItemBuyPrice;
             shopModel.SellPrice = ItemSellPrice;
             shopModel.Order = ItemOrder;
+        }
+
+        private void OnShopDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var cell = e.Source as DataGridCell;
+
+            if (cell?.DataContext is not ItemShop shop)
+            {
+                return;
+            }
+
+            ItemId = shop.ItemId;
+            ItemBuyPrice = shop.BuyPrice;
+            ItemSellPrice = shop.SellPrice;
+            ItemOrder = shop.Order;
+
+            var focus = cell.Column.Header switch
+            {
+                "Buy Price" => Window.ItemBuyPriceNumericBox,
+                "Sell Price" => Window.ItemSellPriceNumericBox,
+                "Order" => Window.ItemOrderNumericBox,
+                _ => Window.ItemBuyPriceNumericBox
+            };
+
+            focus.Focus();
         }
     }
 }
