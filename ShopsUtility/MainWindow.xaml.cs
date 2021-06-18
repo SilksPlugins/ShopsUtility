@@ -404,6 +404,8 @@ namespace ShopsUtility
                 await tcs.Task;
             }
 
+            var ableToConnect = false;
+
             try
             {
                 if (await UseDatabase(async () =>
@@ -412,23 +414,16 @@ namespace ShopsUtility
                     {
                         DbContext = new ShopsDbContext(connectionString);
 
-                        if (!await DbContext.Database.CanConnectAsync())
+                        if (await DbContext.Database.CanConnectAsync())
                         {
-                            await ShowUnableToConnectMessageAsync();
-                            Environment.Exit(-1);
-                            return;
+                            ableToConnect = true;
                         }
-
-                        await DbContext.Database.MigrateAsync();
                     }
                     catch (InvalidOperationException ex) when (ex.InnerException?.GetType() == typeof(MySqlException))
                     {
                         Debug.WriteLine(ex);
-
-                        await ShowUnableToConnectMessageAsync();
-                        Environment.Exit(-1);
                     }
-                }))
+                }) && ableToConnect)
                 {
                     await RefreshDatabase();
                 }
@@ -436,6 +431,14 @@ namespace ShopsUtility
             catch (Exception ex)
             {
                 Debug.WriteLine(ex);
+            }
+            finally
+            {
+                if (!ableToConnect)
+                {
+                    await ShowUnableToConnectMessageAsync();
+                    Environment.Exit(-1);
+                }
             }
         }
 
