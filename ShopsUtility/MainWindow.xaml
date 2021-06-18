@@ -141,8 +141,8 @@
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Item Id" Width="Auto" IsReadOnly="True" Binding="{Binding Path=(shops:ItemShop.ItemId)}"/>
                             <DataGridTextColumn Header="Item Name" Width="*" IsReadOnly="True" Binding="{Binding Path=(shops:ItemShop.ItemName)}"/>
-                            <DataGridTextColumn Header="Buy Price" Width="Auto" IsReadOnly="True" Binding="{Binding Path=(shops:ItemShop.BuyPrice)}"/>
-                            <DataGridTextColumn Header="Sell Price" Width="Auto" IsReadOnly="True" Binding="{Binding Path=(shops:ItemShop.SellPrice)}"/>
+                            <DataGridTextColumn Header="Buy Price" Width="Auto" IsReadOnly="True" Binding="{Binding Path=(shops:ItemShop.BuyPrice), StringFormat=0.00}"/>
+                            <DataGridTextColumn Header="Sell Price" Width="Auto" IsReadOnly="True" Binding="{Binding Path=(shops:ItemShop.SellPrice), StringFormat=0.00}"/>
                             <DataGridTextColumn Header="Order" Width="Auto" IsReadOnly="True" Binding="{Binding Path=(shops:ItemShop.Order)}"/>
                         </DataGrid.Columns>
                     </DataGrid>
@@ -277,7 +277,7 @@
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Vehicle Id" Width="Auto" IsReadOnly="True" Binding="{Binding Path=(shops:VehicleShop.VehicleId)}"/>
                             <DataGridTextColumn Header="Vehicle Name" Width="*" IsReadOnly="True" Binding="{Binding Path=(shops:VehicleShop.VehicleName)}"/>
-                            <DataGridTextColumn Header="Buy Price" Width="Auto" IsReadOnly="True" Binding="{Binding Path=(shops:VehicleShop.BuyPrice)}"/>
+                            <DataGridTextColumn Header="Buy Price" Width="Auto" IsReadOnly="True" Binding="{Binding Path=(shops:VehicleShop.BuyPrice), StringFormat=0.00}"/>
                             <DataGridTextColumn Header="Order" Width="Auto" IsReadOnly="True" Binding="{Binding Path=(shops:VehicleShop.Order)}"/>
                         </DataGrid.Columns>
                     </DataGrid>
