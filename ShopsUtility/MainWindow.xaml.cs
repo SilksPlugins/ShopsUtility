@@ -508,9 +508,7 @@ namespace ShopsUtility
         {
             var cell = e.Source as DataGridCell;
 
-            var itemAsset = cell?.DataContext as AssetInfo;
-
-            if (itemAsset == null)
+            if (cell?.DataContext is not AssetInfo itemAsset)
             {
                 return;
             }
