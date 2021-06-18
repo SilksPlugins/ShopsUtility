@@ -117,6 +117,14 @@ namespace ShopsUtility.Tabs
             shopModel.Order = ItemOrder;
         }
 
+        public override void ResetInputs()
+        {
+            ItemId = 0;
+            ItemBuyPrice = null;
+            ItemSellPrice = null;
+            ItemOrder = 0;
+        }
+
         private void OnShopDoubleClick(object sender, MouseButtonEventArgs e)
         {
             var cell = e.Source as DataGridCell;
@@ -140,6 +148,7 @@ namespace ShopsUtility.Tabs
             };
 
             focus.Focus();
+            focus.SelectAll();
         }
     }
 }

@@ -181,9 +181,11 @@ namespace ShopsUtility.Tabs
                 return;
             }
 
-            ShopIdNumericBox.Value = itemAsset.Id;
+            ResetInputs();
 
+            ShopIdNumericBox.Value = itemAsset.Id;
             ShopIdNumericBox.Focus();
+            ShopIdNumericBox.SelectAll();
         }
 
         private static IEnumerable<AssetInfo> GetAssets(string unparsed)
@@ -273,6 +275,8 @@ namespace ShopsUtility.Tabs
         public abstract TShop CreateShopFromModel(TShopModel shopModel, AssetInfo asset);
 
         public abstract void UpdateShopModel(TShopModel shopModel);
+
+        public abstract void ResetInputs();
 
         protected async Task DisableControls()
         {

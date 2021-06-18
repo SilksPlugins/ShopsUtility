@@ -94,6 +94,13 @@ namespace ShopsUtility.Tabs
             };
         }
 
+        public override void ResetInputs()
+        {
+            VehicleId = 0;
+            VehicleBuyPrice = 0;
+            VehicleOrder = 0;
+        }
+
         public override void UpdateShopModel(VehicleShopModel shopModel)
         {
             shopModel.VehicleId = VehicleId;
@@ -122,6 +129,7 @@ namespace ShopsUtility.Tabs
             };
 
             focus.Focus();
+            focus.SelectAll();
         }
     }
 }
