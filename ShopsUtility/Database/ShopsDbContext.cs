@@ -7,7 +7,8 @@ namespace ShopsUtility.Database
     {
         private readonly string _connectionString;
 
-        public ShopsDbContext() : this("")
+        public ShopsDbContext() :
+            this("Host=127.0.0.1;Port=3306;Database=database;Username=username;Password=password")
         {
         }
 
