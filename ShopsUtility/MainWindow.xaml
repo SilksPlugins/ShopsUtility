@@ -112,7 +112,7 @@
                     </Grid>
                     <DataGrid x:Name="ItemShopDataGrid"
                               Grid.Column="2" Grid.Row="1" Margin="0,5,0,0"
-                              AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="True"
+                              AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="{Binding DatabaseControlsEnabled}"
                               VerticalScrollBarVisibility="Visible"
                               SelectionMode="Single" SelectionUnit="FullRow"
                               ItemsSource="{Binding Path=ShopsCollectionView.View}">
@@ -248,7 +248,7 @@
                     </Grid>
                     <DataGrid x:Name="VehicleShopDataGrid"
                               Grid.Column="2" Grid.Row="1" Margin="0,5,0,0"
-                              AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="True"
+                              AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="{Binding DatabaseControlsEnabled}"
                               VerticalScrollBarVisibility="Visible"
                               SelectionMode="Single" SelectionUnit="FullRow"
                               ItemsSource="{Binding Path=ShopsCollectionView.View}">

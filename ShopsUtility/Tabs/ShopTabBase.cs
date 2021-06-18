@@ -107,6 +107,7 @@ namespace ShopsUtility.Tabs
             AssetFilterTextBox.TextChanged += OnAssetFilterTextChanged;
             DatabaseRefreshButton.Click += OnDatabaseRefreshClicked;
             ShopAddButton.Click += OnShopAddClicked;
+            Shops.CollectionChanged += OnShopsCollectionChanged;
 
             AssetDataGrid.CellStyle = new Style(typeof(DataGridCell), AssetDataGrid.CellStyle)
             {
@@ -420,6 +421,47 @@ namespace ShopsUtility.Tabs
         private void OnShopAddClicked(object sender, RoutedEventArgs e)
         {
             AsyncHelper.Run(AddShop);
+        }
+
+        protected async Task RemoveShop(ushort id)
+        {
+            var success = false;
+
+            if (await UseDatabase(async () =>
+            {
+                var set = DbContext.Set<TShopModel>();
+
+                var shop = await set.FindAsync(id);
+
+                if (shop == null)
+                {
+                    return;
+                }
+
+                DbContext.Remove(shop);
+
+                await DbContext.SaveChangesAsync();
+
+                success = true;
+            }) && success)
+            {
+                await RefreshDatabase();
+            }
+        }
+
+        private void OnShopsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.Action == NotifyCollectionChangedAction.Remove)
+            {
+                AsyncHelper.Run(async () =>
+                {
+                    // There should only ever be one, but just in case
+                    foreach (var oldItem in e.OldItems.Cast<TShop>())
+                    {
+                        await RemoveShop(oldItem.GetId());
+                    }
+                });
+            }
         }
 
         #endregion
