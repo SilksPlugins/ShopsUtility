@@ -23,15 +23,19 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <StackPanel Grid.Column="0" Grid.Row="0" Grid.RowSpan="2">
-                        <Grid Margin="0,0,0,4" Height="28">
+                    <Grid Grid.Column="0" Grid.Row="0" Grid.RowSpan="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/> 
+                            <RowDefinition Height="*"/> 
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0" Margin="0,0,0,4" Height="28">
                             <TextBox VerticalContentAlignment="Center" Padding="5,0,27,0"
                                  Text="{Binding Path=ItemAssetFilter, UpdateSourceTrigger=PropertyChanged}"
                                  TextChanged="OnItemAssetFilterTextChanged"/>
                             <Image HorizontalAlignment="Right" Source="Images/FaSearchSolid.png" Height="14" Margin="0,0,7,0"/>
                         </Grid>
 
-                        <DataGrid Margin="0,5,0,0" ItemsSource="{Binding Path=ItemAssetsCollectionView.View}"
+                        <DataGrid Grid.Row="1" Margin="0,5,0,0" ItemsSource="{Binding Path=ItemAssetsCollectionView.View}"
                               AutoGenerateColumns="False" IsReadOnly="True" VerticalScrollBarVisibility="Visible"
                               SelectionMode="Single" SelectionUnit="FullRow">
                             <DataGrid.Resources>
@@ -55,7 +59,7 @@
                                 <DataGridTextColumn Header="Item Id" Width="2*" IsReadOnly="True" Binding="{Binding Path=Id}"/>
                             </DataGrid.Columns>
                         </DataGrid>
-                    </StackPanel>
+                    </Grid>
 
                     <GridSplitter Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Margin="10,-1,10,0" Width="4"/>
 
