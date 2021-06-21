@@ -6,7 +6,6 @@
                  xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
                  xmlns:local="clr-namespace:ShopsUtility"
                  xmlns:shops="clr-namespace:ShopsUtility.Shops"
-                 xmlns:tabs="clr-namespace:ShopsUtility.Tabs"
                  xmlns:assets="clr-namespace:ShopsUtility.Assets"
                  mc:Ignorable="d"
                  d:DataContext="{d:DesignInstance local:MainWindow}"
