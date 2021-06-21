@@ -105,7 +105,6 @@ namespace ShopsUtility.Tabs
             }
 
             DbContext = new ShopsDbContext(connectionString);
-
         }
 
         public void Load()
