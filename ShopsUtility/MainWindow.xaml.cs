@@ -33,6 +33,10 @@ namespace ShopsUtility
         public ItemShopTab ItemShopTab { get; private set; }
 
         public VehicleShopTab VehicleShopTab { get; private set; }
+        
+        public ItemGroupTab ItemGroupTab { get; private set; }
+
+        public VehicleGroupTab VehicleGroupTab { get; private set; }
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
@@ -52,6 +56,8 @@ namespace ShopsUtility
 
                     ItemShopTab = new ItemShopTab(this, connectionString);
                     VehicleShopTab = new VehicleShopTab(this, connectionString);
+                    ItemGroupTab = new ItemGroupTab(this, connectionString);
+                    VehicleGroupTab = new VehicleGroupTab(this, connectionString);
 
                     ItemShopTabItem.DataContext = ItemShopTab;
                     VehicleShopTabItem.DataContext = VehicleShopTab;

@@ -7,14 +7,15 @@
                  xmlns:local="clr-namespace:ShopsUtility"
                  xmlns:shops="clr-namespace:ShopsUtility.Shops"
                  xmlns:assets="clr-namespace:ShopsUtility.Assets"
+                 xmlns:system="clr-namespace:System;assembly=System.Runtime"
                  mc:Ignorable="d"
-                 d:DataContext="{d:DesignInstance local:MainWindow}"
+                 d:DataContext="{d:DesignInstance {x:Type local:MainWindow}}"
                  Title="Shops UI Utility"
                  Icon="/Images/Icon.ico"
                  Height="450" Width="800">
     <Grid>
         <TabControl x:Name="MainTabControl" Margin="5" Padding="5">
-            <TabItem x:Name="ItemShopTabItem" Header="Items" DataContext="{Binding ItemShopTab}">
+            <TabItem x:Name="ItemShopTabItem" Header="Item Shops" DataContext="{Binding ItemShopTab}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="2*" MinWidth="100"/>
@@ -27,8 +28,8 @@
                     </Grid.RowDefinitions>
                     <Grid Grid.Column="0" Grid.Row="0" Grid.RowSpan="2">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/> 
-                            <RowDefinition Height="*"/> 
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
                         <Grid Grid.Row="0" Margin="0,0,0,4" Height="28">
                             <TextBox x:Name="ItemAssetSearchTextBox" VerticalContentAlignment="Center" Padding="5,0,27,0"/>
@@ -36,11 +37,11 @@
                         </Grid>
 
                         <DataGrid x:Name="ItemAssetDataGrid"
-                                  Grid.Row="1" Margin="0,5,0,0" ItemsSource="{Binding Path=AssetsCollectionView.View}"
+                                  Grid.Row="1" Margin="0,5,0,0" ItemsSource="{Binding AssetsCollectionView.View}"
                                   AutoGenerateColumns="False" IsReadOnly="True" VerticalScrollBarVisibility="Visible"
                                   SelectionMode="Single" SelectionUnit="FullRow">
                             <DataGrid.Resources>
-                                <Style TargetType="DataGridCell">
+                                <Style TargetType="{x:Type DataGridCell}">
                                     <Style.Triggers>
                                         <MultiTrigger>
                                             <MultiTrigger.Conditions>
@@ -55,8 +56,8 @@
                                 </Style>
                             </DataGrid.Resources>
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Item Name" Width="5*" IsReadOnly="True" Binding="{Binding Path=(assets:AssetInfo.Name)}"/>
-                                <DataGridTextColumn Header="Item ID" Width="2*" IsReadOnly="True" Binding="{Binding Path=(assets:AssetInfo.Id)}"/>
+                                <DataGridTextColumn Header="Item Name" Width="5*" IsReadOnly="True" Binding="{Binding (assets:AssetInfo.Name)}"/>
+                                <DataGridTextColumn Header="Item ID" Width="2*" IsReadOnly="True" Binding="{Binding (assets:AssetInfo.Id)}"/>
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>
@@ -64,6 +65,16 @@
                     <GridSplitter Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Margin="10,-1,10,0" Width="4"/>
 
                     <Grid Grid.Column="2" Grid.Row="0" Margin="0,0,0,5">
+                        <Grid.Resources>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="Margin" Value="0,6,8,0"/>
+                            </Style>
+                            <Style TargetType="{x:Type mah:NumericUpDown}">
+                                <Setter Property="Margin" Value="0,0,0,4"/>
+                                <Setter Property="Height" Value="28"/>
+                            </Style>
+                        </Grid.Resources>
+
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition/>
@@ -77,15 +88,6 @@
                             <RowDefinition/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
-                        <Grid.Resources>
-                            <Style TargetType="TextBlock">
-                                <Setter Property="Margin" Value="0,6,8,0"/>
-                            </Style>
-                            <Style TargetType="mah:NumericUpDown">
-                                <Setter Property="Margin" Value="0,0,0,4"/>
-                                <Setter Property="Height" Value="28"/>
-                            </Style>
-                        </Grid.Resources>
 
                         <TextBlock Grid.Column="0" Grid.Row="0" Text="Item ID:" />
                         <TextBlock Grid.Column="3" Grid.Row="0" Text="Order:" />
@@ -95,21 +97,21 @@
                         <mah:NumericUpDown x:Name="ItemIdNumericBox"
                                            Grid.Column="1" Grid.Row="0"
                                            Minimum="0" Maximum="65535"
-                                           NumericInputMode="Numbers" Value="{Binding Path=ItemId}"
+                                           NumericInputMode="Numbers" Value="{Binding ItemId}"
                                            IsEnabled="{Binding DatabaseControlsEnabled}"/>
                         <mah:NumericUpDown x:Name="ItemOrderNumericBox"
                                            Grid.Column="4" Grid.Row="0"
-                                           NumericInputMode="Numbers" Value="{Binding Path=ItemOrder}"
+                                           NumericInputMode="Numbers" Value="{Binding ItemOrder}"
                                            IsEnabled="{Binding DatabaseControlsEnabled}"/>
                         <mah:NumericUpDown x:Name="ItemBuyPriceNumericBox"
                                            Grid.Column="1" Grid.Row="1"
                                            NumericInputMode="Decimal" DecimalPointCorrection="Currency"
-                                           Value="{Binding Path=ItemBuyPrice}"
+                                           Value="{Binding ItemBuyPrice}"
                                            IsEnabled="{Binding DatabaseControlsEnabled}"/>
                         <mah:NumericUpDown x:Name="ItemSellPriceNumericBox"
                                            Grid.Column="4" Grid.Row="1"
                                            NumericInputMode="Decimal" DecimalPointCorrection="Currency"
-                                           Value="{Binding Path=ItemSellPrice}"
+                                           Value="{Binding ItemSellPrice}"
                                            IsEnabled="{Binding DatabaseControlsEnabled}"/>
                         <Button x:Name="ItemShopAddButton" Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="2" Content="Add / Update"
                                 IsEnabled="{Binding DatabaseControlsEnabled}"/>
@@ -123,9 +125,9 @@
                               AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="{Binding DatabaseControlsEnabled}"
                               VerticalScrollBarVisibility="Visible"
                               SelectionMode="Single" SelectionUnit="FullRow"
-                              ItemsSource="{Binding Path=ShopsCollectionView.View}">
+                              ItemsSource="{Binding ShopsCollectionView.View}">
                         <DataGrid.Resources>
-                            <Style TargetType="DataGridCell">
+                            <Style TargetType="{x:Type DataGridCell}">
                                 <Style.Triggers>
                                     <MultiTrigger>
                                         <MultiTrigger.Conditions>
@@ -138,7 +140,7 @@
                                     </MultiTrigger>
                                 </Style.Triggers>
                             </Style>
-                            <Style TargetType="ScrollBar" BasedOn="{StaticResource MahApps.Styles.ScrollBar}">
+                            <Style TargetType="{x:Type ScrollBar}" BasedOn="{StaticResource MahApps.Styles.ScrollBar}">
                                 <Style.Triggers>
                                     <Trigger Property="Orientation" Value="Vertical">
                                         <Setter Property="Width" Value="24"/>
@@ -147,11 +149,11 @@
                             </Style>
                         </DataGrid.Resources>
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Item ID" Width="Auto" IsReadOnly="True" Binding="{Binding Path=(shops:ItemShop.ItemId)}"/>
-                            <DataGridTextColumn Header="Item Name" Width="*" IsReadOnly="True" Binding="{Binding Path=(shops:ItemShop.ItemName)}"/>
-                            <DataGridTextColumn Header="Buy Price" Width="Auto" IsReadOnly="True" Binding="{Binding Path=(shops:ItemShop.BuyPrice), StringFormat=0.00}"/>
-                            <DataGridTextColumn Header="Sell Price" Width="Auto" IsReadOnly="True" Binding="{Binding Path=(shops:ItemShop.SellPrice), StringFormat=0.00}"/>
-                            <DataGridTextColumn Header="Order" Width="Auto" IsReadOnly="True" Binding="{Binding Path=(shops:ItemShop.Order)}"/>
+                            <DataGridTextColumn Header="Item ID" Width="Auto" IsReadOnly="True" Binding="{Binding (shops:ItemShop.ItemId)}"/>
+                            <DataGridTextColumn Header="Item Name" Width="*" IsReadOnly="True" Binding="{Binding (shops:ItemShop.ItemName)}"/>
+                            <DataGridTextColumn Header="Buy Price" Width="Auto" IsReadOnly="True" Binding="{Binding (shops:ItemShop.BuyPrice), StringFormat=0.00}"/>
+                            <DataGridTextColumn Header="Sell Price" Width="Auto" IsReadOnly="True" Binding="{Binding (shops:ItemShop.SellPrice), StringFormat=0.00}"/>
+                            <DataGridTextColumn Header="Order" Width="Auto" IsReadOnly="True" Binding="{Binding (shops:ItemShop.Order)}"/>
                         </DataGrid.Columns>
                     </DataGrid>
                     <mah:ProgressRing x:Name="ItemShopDatabaseProgressRing" Grid.Column="2" Grid.Row="1"/>
@@ -164,7 +166,7 @@
                     </Button>
                 </Grid>
             </TabItem>
-            <TabItem x:Name="VehicleShopTabItem" Header="Vehicles" DataContext="{Binding VehicleShopTab}">
+            <TabItem x:Name="VehicleShopTabItem" Header="Vehicle Shops" DataContext="{Binding VehicleShopTab}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="2*" MinWidth="100"/>
@@ -186,11 +188,11 @@
                         </Grid>
 
                         <DataGrid x:Name="VehicleAssetDataGrid"
-                                  Grid.Row="1" Margin="0,5,0,0" ItemsSource="{Binding Path=AssetsCollectionView.View}"
+                                  Grid.Row="1" Margin="0,5,0,0" ItemsSource="{Binding AssetsCollectionView.View}"
                                   AutoGenerateColumns="False" IsReadOnly="True" VerticalScrollBarVisibility="Visible"
                                   SelectionMode="Single" SelectionUnit="FullRow">
                             <DataGrid.Resources>
-                                <Style TargetType="DataGridCell">
+                                <Style TargetType="{x:Type DataGridCell}">
                                     <Style.Triggers>
                                         <MultiTrigger>
                                             <MultiTrigger.Conditions>
@@ -205,8 +207,8 @@
                                 </Style>
                             </DataGrid.Resources>
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Vehicle Name" Width="5*" IsReadOnly="True" Binding="{Binding Path=(assets:AssetInfo.Name)}"/>
-                                <DataGridTextColumn Header="Vehicle ID" Width="2*" IsReadOnly="True" Binding="{Binding Path=(assets:AssetInfo.Id)}"/>
+                                <DataGridTextColumn Header="Vehicle Name" Width="5*" IsReadOnly="True" Binding="{Binding (assets:AssetInfo.Name)}"/>
+                                <DataGridTextColumn Header="Vehicle ID" Width="2*" IsReadOnly="True" Binding="{Binding (assets:AssetInfo.Id)}"/>
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>
@@ -214,6 +216,16 @@
                     <GridSplitter Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Margin="10,-1,10,0" Width="4"/>
 
                     <Grid Grid.Column="2" Grid.Row="0" Margin="0,0,0,5">
+                        <Grid.Resources>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="Margin" Value="0,6,8,0"/>
+                            </Style>
+                            <Style TargetType="{x:Type mah:NumericUpDown}">
+                                <Setter Property="Margin" Value="0,0,0,4"/>
+                                <Setter Property="Height" Value="28"/>
+                            </Style>
+                        </Grid.Resources>
+
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition/>
@@ -227,15 +239,6 @@
                             <RowDefinition/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
-                        <Grid.Resources>
-                            <Style TargetType="TextBlock">
-                                <Setter Property="Margin" Value="0,6,8,0"/>
-                            </Style>
-                            <Style TargetType="mah:NumericUpDown">
-                                <Setter Property="Margin" Value="0,0,0,4"/>
-                                <Setter Property="Height" Value="28"/>
-                            </Style>
-                        </Grid.Resources>
 
                         <TextBlock Grid.Column="0" Grid.Row="0" Text="Vehicle ID:" />
                         <TextBlock Grid.Column="3" Grid.Row="0" Text="Order:" />
@@ -244,16 +247,16 @@
                         <mah:NumericUpDown x:Name="VehicleIdNumericBox"
                                            Grid.Column="1" Grid.Row="0"
                                            Minimum="0" Maximum="65535"
-                                           NumericInputMode="Numbers" Value="{Binding Path=VehicleId}"
+                                           NumericInputMode="Numbers" Value="{Binding VehicleId}"
                                            IsEnabled="{Binding DatabaseControlsEnabled}"/>
                         <mah:NumericUpDown x:Name="VehicleOrderNumericBox"
                                            Grid.Column="4" Grid.Row="0"
-                                           NumericInputMode="Numbers" Value="{Binding Path=VehicleOrder}"
+                                           NumericInputMode="Numbers" Value="{Binding VehicleOrder}"
                                            IsEnabled="{Binding DatabaseControlsEnabled}"/>
                         <mah:NumericUpDown x:Name="VehicleBuyPriceNumericBox"
                                            Grid.Column="1" Grid.Row="1"
                                            NumericInputMode="Decimal" DecimalPointCorrection="Currency"
-                                           Value="{Binding Path=VehicleBuyPrice}"
+                                           Value="{Binding VehicleBuyPrice}"
                                            IsEnabled="{Binding DatabaseControlsEnabled}"/>
                         <Button x:Name="VehicleShopAddButton" Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="2" Content="Add / Update"
                                 IsEnabled="{Binding DatabaseControlsEnabled}"/>
@@ -267,9 +270,9 @@
                               AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="{Binding DatabaseControlsEnabled}"
                               VerticalScrollBarVisibility="Visible"
                               SelectionMode="Single" SelectionUnit="FullRow"
-                              ItemsSource="{Binding Path=ShopsCollectionView.View}">
+                              ItemsSource="{Binding ShopsCollectionView.View}">
                         <DataGrid.Resources>
-                            <Style TargetType="DataGridCell">
+                            <Style TargetType="{x:Type DataGridCell}">
                                 <Style.Triggers>
                                     <MultiTrigger>
                                         <MultiTrigger.Conditions>
@@ -282,7 +285,7 @@
                                     </MultiTrigger>
                                 </Style.Triggers>
                             </Style>
-                            <Style TargetType="ScrollBar" BasedOn="{StaticResource MahApps.Styles.ScrollBar}">
+                            <Style TargetType="{x:Type ScrollBar}" BasedOn="{StaticResource MahApps.Styles.ScrollBar}">
                                 <Style.Triggers>
                                     <Trigger Property="Orientation" Value="Vertical">
                                         <Setter Property="Width" Value="24"/>
@@ -291,10 +294,10 @@
                             </Style>
                         </DataGrid.Resources>
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Vehicle ID" Width="Auto" IsReadOnly="True" Binding="{Binding Path=(shops:VehicleShop.VehicleId)}"/>
-                            <DataGridTextColumn Header="Vehicle Name" Width="*" IsReadOnly="True" Binding="{Binding Path=(shops:VehicleShop.VehicleName)}"/>
-                            <DataGridTextColumn Header="Buy Price" Width="Auto" IsReadOnly="True" Binding="{Binding Path=(shops:VehicleShop.BuyPrice), StringFormat=0.00}"/>
-                            <DataGridTextColumn Header="Order" Width="Auto" IsReadOnly="True" Binding="{Binding Path=(shops:VehicleShop.Order)}"/>
+                            <DataGridTextColumn Header="Vehicle ID" Width="Auto" IsReadOnly="True" Binding="{Binding (shops:VehicleShop.VehicleId)}"/>
+                            <DataGridTextColumn Header="Vehicle Name" Width="*" IsReadOnly="True" Binding="{Binding (shops:VehicleShop.VehicleName)}"/>
+                            <DataGridTextColumn Header="Buy Price" Width="Auto" IsReadOnly="True" Binding="{Binding (shops:VehicleShop.BuyPrice), StringFormat=0.00}"/>
+                            <DataGridTextColumn Header="Order" Width="Auto" IsReadOnly="True" Binding="{Binding (shops:VehicleShop.Order)}"/>
                         </DataGrid.Columns>
                     </DataGrid>
                     <mah:ProgressRing x:Name="VehicleShopDatabaseProgressRing" Grid.Column="2" Grid.Row="1"/>
@@ -307,7 +310,71 @@
                     </Button>
                 </Grid>
             </TabItem>
+            <TabItem x:Name="ItemGroupTabItem" Header="Item Groups" DataContext="{Binding ItemGroupTab}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0"
+                              Margin="0,0,0,4"
+                              Height="28">
+
+                            <TextBox VerticalContentAlignment="Center"
+                                     Padding="5,0,27,0"/>
+
+                            <Button Style="{DynamicResource MahApps.Styles.Button.Chromeless}"
+                                    HorizontalAlignment="Right"
+                                    Margin="0,0,7,0">
+                                <Path Width="14"
+                                      Height="14"
+                                      Data="F1 M 35,19L 41,19L 41,35L 57,35L 57,41L 41,41L 41,57L 35,57L 35,41L 19,41L 19,35L 35,35L 35,19 Z "
+                                      Fill="{DynamicResource MahApps.Brushes.Gray1}"
+                                      Stretch="Fill" />
+                            </Button>
+
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <ListBox ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                                <ListBox.ItemTemplate>
+                                    <ItemContainerTemplate DataType="{x:Type system:String}">
+                                        <Grid d:DataContext="{d:DesignInstance {x:Type system:String}}">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Grid.Column="0"
+                                                       Text="{Binding}"
+                                                       Margin="5,0,5,0"/>
+                                            <Button Grid.Column="1"
+                                                    Style="{DynamicResource MahApps.Styles.Button.Chromeless}"
+                                                    HorizontalAlignment="Right"
+                                                    Margin="0,0,7,0"
+                                                    Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type ListBox}}, Path=DataContext.ItemGroupRemovedCommand}"
+                                                    CommandParameter="{Binding}">
+                                                <Path Width="14"
+                                                      Height="3"
+                                                      Data="F1 M 19,38L 57,38L 57,44L 19,44L 19,38 Z "
+                                                      Fill="{DynamicResource MahApps.Brushes.Gray1}"
+                                                      Stretch="Fill" />
+                                            </Button>
+                                        </Grid>
+                                    </ItemContainerTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </Grid>
+                    </Grid>
+
+                    <GridSplitter Grid.Column="1" Margin="10,-1,10,0" Width="4"/>
+                </Grid>
+            </TabItem>
         </TabControl>
-        <mah:ProgressRing x:Name="MainProgressRing"/>
+        <mah:ProgressRing x:Name="MainProgressRing" d:IsHidden="True"/>
     </Grid>
 </mah:MetroWindow>
