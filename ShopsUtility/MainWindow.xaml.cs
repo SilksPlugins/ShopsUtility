@@ -34,9 +34,7 @@ namespace ShopsUtility
 
         public VehicleShopTab VehicleShopTab { get; private set; }
         
-        public ItemGroupTab ItemGroupTab { get; private set; }
-
-        public VehicleGroupTab VehicleGroupTab { get; private set; }
+        public AuthGroupTab AuthGroupTab { get; private set; }
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {

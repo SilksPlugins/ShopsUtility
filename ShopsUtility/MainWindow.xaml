@@ -310,7 +310,7 @@
                     </Button>
                 </Grid>
             </TabItem>
-            <TabItem x:Name="ItemGroupTabItem" Header="Item Groups" DataContext="{Binding ItemGroupTab}">
+            <TabItem x:Name="AuthGroupTabItem" Header="Auth Groups" DataContext="{Binding AuthGroupTab}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
@@ -320,9 +320,14 @@
                     <Grid Grid.Column="0">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <Grid Grid.Row="0"
+                        <Grid Grid.Row="0" Margin="0,0,0,4" Height="28">
+                            <TextBox x:Name="AuthGroupSearchTextBox" VerticalContentAlignment="Center" Padding="5,0,27,0"/>
+                            <Image HorizontalAlignment="Right" Source="Images/FaSearchSolid.png" Height="14" Margin="0,0,7,0"/>
+                        </Grid>
+                        <Grid Grid.Row="1"
                               Margin="0,0,0,4"
                               Height="28">
 
@@ -340,8 +345,8 @@
                             </Button>
 
                         </Grid>
-                        <Grid Grid.Row="1">
-                            <ListBox ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                        <Grid Grid.Row="2">
+                            <ListBox ScrollViewer.HorizontalScrollBarVisibility="Disabled" Grid.ColumnSpan="2">
                                 <ListBox.ItemTemplate>
                                     <ItemContainerTemplate DataType="{x:Type system:String}">
                                         <Grid d:DataContext="{d:DesignInstance {x:Type system:String}}">
@@ -356,7 +361,7 @@
                                                     Style="{DynamicResource MahApps.Styles.Button.Chromeless}"
                                                     HorizontalAlignment="Right"
                                                     Margin="0,0,7,0"
-                                                    Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type ListBox}}, Path=DataContext.ItemGroupRemovedCommand}"
+                                                    Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type ListBox}}, Path=DataContext.GroupRemovedCommand}"
                                                     CommandParameter="{Binding}">
                                                 <Path Width="14"
                                                       Height="3"
